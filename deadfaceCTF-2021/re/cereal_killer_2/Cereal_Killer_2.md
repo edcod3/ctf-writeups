@@ -23,7 +23,7 @@ Dissassembling .NET binary is trivial with the help of tools like [ILSpy](https:
 Opening the binary in `dnSpy` shows us the C# source code.
 
 dnSPy Assembly Explorer: \
-![dnSPy Assembly Explorer](assembly-explorer.png "dnSPy Assembly Explorer")
+![dnSPy Assembly Explorer](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/deadfaceCTF-2021/re/cereal_killer_2/assembly-explorer.png "dnSPy Assembly Explorer")
 
 SymmetricEncryptor class source code:
 ```csharp
