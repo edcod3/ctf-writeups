@@ -8,7 +8,7 @@
 
 \
 My approach to this challenge (during the ctf) was running the binary in a VM (dynamic analysis). \
-__Disclaimer: Do not run untrusted binaries on your host machine!__\
+__Disclaimer: Do not run untrusted binaries on your host machine!__
 
 After the CTF I found the IOC string by reversing the binary (static analysis). \
 \
