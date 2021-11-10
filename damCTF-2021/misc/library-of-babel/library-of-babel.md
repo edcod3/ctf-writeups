@@ -23,7 +23,7 @@ _Note: This is how I solved the challenge during the CTF. Opening the world in m
 Copying the folder into the minecraft saves directory (in my case: `%USERPROFILE%\AppData\Roaming\.minecraft\saves`) and launching the game will load the world into the game so we can join it.
 
 Once the world is loaded, we can see a bunch of books on "bookstands" or __lecterns__. If we open one of these books we can see a bunch of random characters.
-![Random characters](random_book_text.jpg "Random characters")
+![Random characters](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/damCTF-2021/misc/library-of-babel/random_book_text.jpg "Random characters")
 
 We can assume that the flag is hidden in one of the many books in the library & that we have to programmatically find the exact book/page with the flag in it. 
 
@@ -39,18 +39,18 @@ These are the files that are most interesting to us, because they contain the ma
 We can start with the biggest file (`r.-1.0.mca`) as the chances of the flag being in this file is the biggest, because it contains the most data/books (maybe even all of them). 
 
 Opening the file in `NBTExplorer` gives us the following output:
-![NBTExplorer output](nbtexplorer_output.jpg "NBTExplorer output")
+![NBTExplorer output](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/damCTF-2021/misc/library-of-babel/nbtexplorer_output.jpg "NBTExplorer output")
 
 We can see that the file is split into chunks, but which chunks have books inside them and how can we parse the page contents? \
 Instead of manually checking each chunk in NBTExplorer until we find a book (which is probably what I would have done if I hadn't had a copy of minecraft), we can just check which chunk contains a book inside of Minecraft itself!
 
 Go back to Minecraft & press `F3` to open the debug screen. Then walk to a book/lectern & read the chunk location from the debug screen.
 
-![Minecraft chunk location](chunk_location.jpg "Minecraft chunk location")
+![Minecraft chunk location](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/damCTF-2021/misc/library-of-babel/chunk_location.jpg "Minecraft chunk location")
 
 Now we locate the exact chunk in the NBTExplorer & find the book contents.
 
-![NBTExplorer chunk data](nbtexplorer_chunk_data.jpg "NBTExplorer chunk data").
+![NBTExplorer chunk data](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/damCTF-2021/misc/library-of-babel/nbtexplorer_chunk_data.jpg "NBTExplorer chunk data").
 
 We can see that the page contents are located in `TileEntities->Book->tag->pages`.
 
@@ -69,20 +69,13 @@ import re
 
 region = anvil.Region.from_file("./region/r.-1.0.mca")
 
-chunk = anvil.Chunk.from_region(region, 21, 7)
-
 for x in range(31):
     for z in range(31):
         try:
             chunk = anvil.Chunk.from_region(region, x, z)
             for te in chunk.tile_entities:
                 if str(te["id"]) == "minecraft:lectern":
-                    try:
-                        pages = te["Book"]["tag"]["pages"]
-                    except KeyError as e:
-                        print(e)
-                        print(te.id)
-                        print(te)
+                    pages = te["Book"]["tag"]["pages"]
                     for page in pages:
                         if "dam{" in str(page):
                             #print(page)
