@@ -28,7 +28,7 @@ __Note: When adding the network, MetaMask could tell you that `This URL is curre
 
 To verify that you're connected to the network, check that the NetMask extension shows a green light next to your account with the text `Connected`.
 
-![Metamask Connected](metamask_connected.png "Metamask Connected")
+![Metamask Connected](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/CyberSecurityRumble/eth/UnknownOrigin/metamask_connected.png "Metamask Connected")
 
 Additionally, you can check in the browser console of the page by entering `player`.
 
@@ -41,7 +41,7 @@ Next, you can add the ETH to your account by following the above instructions fr
 
 Now you should see that 10 ETH has been added to your account.
 
-![Challenge Registration](challenge_register.png "Challenge Registration")
+![Challenge Registration](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/CyberSecurityRumble/eth/UnknownOrigin/challenge_register.png "Challenge Registration")
 
 Now we can start with the challenge!
 
@@ -163,7 +163,7 @@ contract AttackerOrigin {
 ```
 The Remix workspace should now look similar to this:
 
-![Remix Workspace](remix_workspace.png "Remix Workspace")
+![Remix Workspace](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/CyberSecurityRumble/eth/UnknownOrigin/remix_workspace.png "Remix Workspace")
 
 
 Now that we created our malicious contract, let's deploy it.
@@ -177,7 +177,7 @@ The contract has been deployed & it should be visible in the `Deployed Contracts
 We can now change the owner of the `UnknownOrigin` contract by pasting our (user) address into the `_owner` field & pressing the `attackOwner` button. 
 
 The transaction should successfully be mined & executed, making us the owner of the target contract!
-![Deploy Contract](remix_contract_deploy.png "Deploy Contract")
+![Deploy Contract](https://raw.githubusercontent.com/edcod3/ctf-writeups/master/CyberSecurityRumble/eth/UnknownOrigin/remix_contract_deploy.png "Deploy Contract")
 
 We can double-check this by going to the challenge page & checking the owner of the contract with our user address.
 
